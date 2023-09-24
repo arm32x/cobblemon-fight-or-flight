@@ -1,4 +1,4 @@
-rootProject.name = "Fabric"
+rootProject.name = "cobblemon-fight-or-flight"
 
 pluginManagement {
     repositories {
