@@ -3,17 +3,10 @@ package me.rufia.fightorflight;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import me.rufia.fightorflight.config.FightOrFlightCommonConfigs;
-import me.rufia.fightorflight.mixin.MobEntityAccessor;
 import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.EscapeDangerGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.entity.ai.goal.GoalSelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
