@@ -1,8 +1,10 @@
+@file:Suppress("LocalVariableName")
+
 plugins {
     id("java")
-    id("dev.architectury.loom") version("1.2-SNAPSHOT")
-    id("architectury-plugin") version("3.4-SNAPSHOT")
-    kotlin("jvm") version ("1.8.10")
+    id("dev.architectury.loom") version "1.2-SNAPSHOT"
+    id("architectury-plugin") version "3.4-SNAPSHOT"
+    kotlin("jvm") version "1.8.10"
 }
 
 group = "me.rufia"
@@ -14,6 +16,7 @@ architectury {
 }
 
 loom {
+    @Suppress("UnstableApiUsage")
     mixin {
         defaultRefmapName.set("mixins.${project.name}.refmap.json")
     }
@@ -21,22 +24,28 @@ loom {
 
 repositories {
     mavenCentral()
-    maven(url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
+    maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
     maven("https://maven.impactdev.net/repository/development/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
+    maven("https://maven.wispforest.io")
 }
 
 dependencies {
-    minecraft("net.minecraft:minecraft:1.20.1")
-    mappings("net.fabricmc:yarn:1.20.1+build.10:v2")
-    modImplementation("net.fabricmc:fabric-loader:0.14.21")
+    val minecraft_version: String by project
+    minecraft("net.minecraft:minecraft:${minecraft_version}")
+    val yarn_mappings: String by project
+    mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
+    val loader_version: String by project
+    modImplementation("net.fabricmc:fabric-loader:${loader_version}")
 
-    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:0.89.0+1.20.1")
-    modImplementation(fabricApi.module("fabric-command-api-v2", "0.83.0+1.19.4"))
-    modImplementation("com.cobblemon:fabric:1.4.0+1.20.1-SNAPSHOT")
+//    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:0.89.0+1.20.1")
+//    modImplementation(fabricApi.module("fabric-command-api-v2", "0.83.0+1.19.4"))
+    val cobblemon_version: String by project
+    modImplementation("com.cobblemon:fabric:${cobblemon_version}")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    val owo_version: String by project
+    annotationProcessor(modImplementation("io.wispforest:owo-lib:${owo_version}")!!)
+    include("io.wispforest:owo-sentinel:${owo_version}")
 }
 
 tasks.getByName<Test>("test") {
