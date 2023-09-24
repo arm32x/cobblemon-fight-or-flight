@@ -10,7 +10,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.TrackTargetGoal;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tag.EntityTypeTags;
 import net.minecraft.world.GameRules;
 
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class CaughtByTargetGoal extends TrackTargetGoal {
         }
 
         if (lastCaughtByMob != null) {
-            if (lastCaughtByMob.getType() == EntityType.PLAYER && this.mob.world.getGameRules().getBoolean(GameRules.UNIVERSAL_ANGER)) {
+            if (lastCaughtByMob.getType() == EntityType.PLAYER && this.mob.getWorld().getGameRules().getBoolean(GameRules.UNIVERSAL_ANGER)) {
                 return false;
             } else {
                 return this.canTrack(lastCaughtByMob, HURT_BY_TARGETING);

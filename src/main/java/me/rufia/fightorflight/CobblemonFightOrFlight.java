@@ -121,15 +121,15 @@ public class CobblemonFightOrFlight implements ModInitializer {
 		double particleXSpeed = Math.cos(particleAngle) * particleSpeed;
 		double particleYSpeed = Math.sin(particleAngle) * particleSpeed;
 
-		if (mob.world instanceof ServerWorld){
-			((ServerWorld)mob.world).spawnParticles(ParticleTypes.ANGRY_VILLAGER,
+		if (mob.getWorld() instanceof ServerWorld){
+			((ServerWorld)mob.getWorld()).spawnParticles(ParticleTypes.ANGRY_VILLAGER,
 					mob.getPos().x, mob.getBoundingBox().maxY, mob.getPos().z,
 					1, //Amount?
 					particleXSpeed,0.5d, particleYSpeed,
 					1.0f); //Scale?
 		}
 		else{
-			mob.world.addParticle(ParticleTypes.ANGRY_VILLAGER,
+			mob.getWorld().addParticle(ParticleTypes.ANGRY_VILLAGER,
 					mob.getPos().x, mob.getBoundingBox().maxY, mob.getPos().z,
 					particleXSpeed,0.5d, particleYSpeed);
 		}

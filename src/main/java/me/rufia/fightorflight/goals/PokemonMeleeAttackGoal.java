@@ -13,6 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -185,10 +186,8 @@ public class PokemonMeleeAttackGoal extends MeleeAttackGoal {
                 }
             }
 
-
-
-
-            boolean flag = hurtTarget.damage(DamageSource.mob(this.mob), hurtDamage);
+            DamageSource damageSource = this.mob.getDamageSources().mobAttack(this.mob);
+            boolean flag = hurtTarget.damage(damageSource, hurtDamage);
             if (flag) {
                 if (hurtKnockback > 0.0F && hurtTarget instanceof LivingEntity) {
 //                    ((LivingEntity)hurtTarget).takeKnockback((double)(hurtKnockback * 0.5F), (double) Math.sin(this.mob.getYaw() * ((float)Math.PI / 180F)), (double)(-Math.cos(this.mob.getYaw() * ((float)Math.PI / 180F))));
@@ -243,6 +242,8 @@ public class PokemonMeleeAttackGoal extends MeleeAttackGoal {
 
             BattleBuilder.INSTANCE.pvp1v1(serverPlayer,
                     serverOpponent,
+                    null,
+                    null,
                     BattleFormat.Companion.getGEN_9_SINGLES(),
                     false,
                     false,
